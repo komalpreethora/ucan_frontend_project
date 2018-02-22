@@ -1,0 +1,81 @@
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp" ng-controller="userProfile">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  	<a class="navbar-brand" href="#home">UCAN</a>
+  	<div class="collapse navbar-collapse" id="navbarColor01">
+    	<ul class="navbar-nav alignright">
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+	      	<input class="form-control mr-sm-2 col-lg-6" placeholder="Search" type="text">
+	      	<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+	    	</form>
+
+				<li class="nav-item">
+        	<a class="nav-link" href="#postQuestion">Ask</a>
+      	</li>
+				<li class="nav-item">
+        	<a class="nav-link" href="#home">Chat</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="#home">Bookmarks</a>
+      	</li>
+    		<li class="nav-item">
+    			<a class="nav-link" href="#userProfile">My Profile</a>
+    		</li>
+    	</ul>
+  	</div>
+	</nav>
+	<br><br><br>
+
+	<!-- When user clicks on edit, enable fields -->
+	<div class="container">
+		<legend>Your user id is {{id}}.</legend><br><br>
+		<form>
+			<div class="form-group">
+				<label>Username </label>
+				<input value={{username}} class="form-control col-sm-4 col-md-6 col-lg-4" ng-disabled="isEditable" ng-model="in_userName"></input><br>
+
+				<label>Password</label>
+				<input value={{password}} class="form-control col-sm-4 col-md-6 col-lg-4" ng-disabled="isEditable" ng-model="in_password" /><br>
+
+				<label class="control-label col-sm-2 col-md-6 col-lg-2">Email</label>
+				<input type="email" value ={{email}} class="form-control col-sm-4 col-md-6 col-lg-4" ng-disabled="isEditable" ng-model="in_email" /><br>
+
+				<label>Contact</label>
+				<input value={{contact}} class="form-control col-sm-4 col-md-6 col-lg-4" ng-disabled="isEditable" ng-model="in_contact" /><br>
+
+				<label>Country</label>
+				<input value={{country}} class="form-control col-sm-4 col-md-6 col-lg-4" ng-disabled="isEditable" ng-model="in_country"/><br>
+				<hr class="hr">
+
+				<div ng-if="isEditable">
+					<legend>Topics of Interest</legend>
+						<p ng-repeat="topicI in userInterestTopics">{{topicI.name}} with {{topicI.followerCount}} followers<br></p><br>
+					<legend>Topics of Expertise</legend>
+						<p ng-repeat="topicE in userExpertiseTopics">{{topicE.name}} with {{topicE.followerCount}} followers<br></p>
+				</div>
+
+				<div ng-if="!isEditable">
+					<table class="table table-hover">
+  					<thead>
+    					<tr>
+      					<th scope="col">Topics you are interested in?</th>
+      					<th scope="col">Topics you are an expert in?</th>
+    					</tr>
+  					</thead>
+  					<tbody>
+    					<tr class="table-active" ng-repeat="topic in topicsArr">
+      					<td><input class="form-check-input" type="checkbox" name={{topic.id}} ng-model=checkedTopicInterest[topic.id]> <label class="form-check-label" for="{{topic.id}}">{{topic.name}}</label> </td>
+      					<td><input class="form-check-input" type="checkbox" name={{topic.id}} ng-model=checkedTopicExpertise[topic.id]> <label class="form-check-label" for="{{topic.id}}">{{topic.name}}</label></td>
+    					</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<input type="button" class="btn btn-outline-primary" value={{buttonText}} ng-click="edit()" /><br/>
+
+			</div>
+		</form>
+
+
+	</div>
+</div>

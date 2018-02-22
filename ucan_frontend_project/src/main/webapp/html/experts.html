@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp" ng-controller="expertList">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  	<a class="navbar-brand" href="#home">UCAN</a>
+  	<div class="collapse navbar-collapse" id="navbarColor01">
+    	<ul class="navbar-nav alignright">
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+	      	<input class="form-control mr-sm-2 col-lg-6" placeholder="Search" type="text">
+	      	<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+	    	</form>
+
+				<li class="nav-item">
+        	<a class="nav-link" href="#postQuestion">Ask</a>
+      	</li>
+				<li class="nav-item">
+        	<a class="nav-link" href="#home">Chat</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="#home">Bookmarks</a>
+      	</li>
+    		<li class="nav-item">
+    			<a class="nav-link" href="#userProfile">My Profile</a>
+    		</li>
+    	</ul>
+  	</div>
+	</nav>
+	<br><br><br>
+
+	<div class="container">
+		<form>
+			<p class="lead">Choose an expert to answer your question!</p>
+			<select ng-model="expert" ng-options="user as user.username +' - '+user.email for user in userExpertArray">
+			</select>
+			<br>
+			<button type="button" class="btn btn-outline-primary" ng-click="selectExpert()">SELECT EXPERT</button>
+		</form>
+	</div>
+</div>

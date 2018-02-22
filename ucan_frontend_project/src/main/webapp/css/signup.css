@@ -1,0 +1,155 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #333;
+  font: 100%/1 "Helvetica Neue", Arial, sans-serif;
+}
+
+.signup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.signup:hover > .signup-header, .signup.focused > .signup-header {
+  width: 2rem;
+}
+.signup:hover > .signup-header > .text, .signup.focused > .signup-header > .text {
+  font-size: 1rem;
+  transform: rotate(-90deg);
+}
+.signup.loading > .signup-header {
+  width: 100%;
+}
+.signup.loading > .signup-header > .text {
+  display: none;
+}
+.signup.loading > .signup-header > .loader {
+  display: block;
+}
+
+.signup-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: orange;
+  transition: width 0.5s ease-in-out;
+}
+.signup-header > .text {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 5rem;
+  text-align: center;
+  line-height: 20rem;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.signup-header > .loader {
+  display: none;
+  position: absolute;
+  right: 38%;
+  top:40%;
+  width: 10rem;
+  height: 10rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: loading 2s linear infinite;
+}
+.signup-header > .loader:after {
+  content: "";
+  position: absolute;
+  left: 4.5rem;
+  top: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  border-radius: 50%;
+  border-right: 2px solid orange;
+}
+.signup-header > .loader:before {
+  content: "";
+  position: absolute;
+  left: 4rem;
+  top: -0.5rem;
+  width: 0;
+  height: 0;
+  border-right: 1rem solid #fff;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+}
+
+@keyframes loading {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.signup-form {
+  margin: 0 0 0 2rem;
+  padding: 0.5rem;
+}
+
+.signup-input {
+  display: block;
+  width: 100%;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+  border-color: #ccc;
+  border-width: 0 0 2px 0;
+}
+.signup-input + .signup-input {
+  margin: 10px 0 0;
+}
+.signup-input:focus {
+  outline: none;
+  border-bottom-color: orange;
+}
+
+.signup-btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 5rem;
+  height: 5rem;
+  border: none;
+  background: orange;
+  border-radius: 50%;
+  font-size: 0;
+  border: 0.6rem solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+.signup-btn:after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 0.8rem;
+  width: 0;
+  height: 0;
+  border-left: 2.4rem solid #fff;
+  border-top: 1.2rem solid transparent;
+  border-bottom: 1.2rem solid transparent;
+  transition: border 0.3s ease-in-out 0s;
+}
+.signup-btn:hover, .signup-btn:focus, .signup-btn:active {
+  background: #fff;
+  border-color: orange;
+  outline: none;
+}
+.signup-btn:hover:after, .signup-btn:focus:after, .signup-btn:active:after {
+  border-left-color: orange;
+}

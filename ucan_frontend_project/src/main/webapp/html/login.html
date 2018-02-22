@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
+<link rel="stylesheet" type="text/css" href="/css/signup.css">
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp">
+    	<div ng-controller="login" class="login">
+  		<header class="login-header"><span class="text">LOGIN</span><span class="loader"></span></header>
+  		<form class="login-form">
+    		<input class="login-input" type="text" placeholder="Email ID" ng-model="email"/>
+    		<input class="login-input" type="password" placeholder="Password" ng-model="password"/>
+    		<button class="login-btn" type="submit" ng-click="loginUser(email,password)">login</button>
+  		</form>
+  		<br>
+  		<p align="center" class="text-danger">{{msg1}}</p>
+	</div>
+
+
+	<div ng-controller="signUp" class="signup">
+  		<header class="signup-header"><span class="text">SIGNUP</span><span class="loader"></span></header>
+  		<form class="signup-form">
+    		<input class="signup-input" type="text" placeholder="Username" ng-model="username" required/>
+    		<input class="signup-input" type="password" placeholder="Password" ng-model="password" required/>
+    		<input class="signup-input" type="email" placeholder="Email Id" ng-model="email" required/>
+    		<input class="signup-input" type="text" placeholder="Contact" ng-model="contact" required/>
+    		<input class="signup-input" type="text" placeholder="Country" ng-model="country" required/>
+    		<button class="signup-btn" type="submit" ng-click="createUser(username, password, email, contact, country)">Sign Up</button>
+  		</form>
+  		<p align="center" class="text-success"> {{msg2}} </p>
+	</div>
+</div>

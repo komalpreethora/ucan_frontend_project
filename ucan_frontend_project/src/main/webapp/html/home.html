@@ -1,0 +1,85 @@
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp" ng-controller="home">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  	<a class="navbar-brand" href="#home">UCAN</a>
+  	<div class="collapse navbar-collapse" id="navbarColor01">
+    	<ul class="navbar-nav alignright">
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+	      	<input class="form-control mr-sm-2 col-lg-6" placeholder="Search" type="text">
+	      	<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+	    	</form>
+
+				<li class="nav-item">
+        	<a class="nav-link" href="#postQuestion">Ask</a>
+      	</li>
+				<li class="nav-item">
+        	<a class="nav-link" href="#home">Chat</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="#home">Bookmarks</a>
+      	</li>
+    		<li class="nav-item">
+    			<a class="nav-link" href="#userProfile">My Profile</a>
+    		</li>
+    	</ul>
+  	</div>
+	</nav>
+	<br><br><br>
+
+	<div class="container">
+		<h4>Hello {{name}}! Welcome to UCAN!</h4>
+		<br><br>
+
+		<div class="form-group" ng-if="topics_flag == true">
+			<hr>
+			<legend>Your Interest Topics</legend>
+			<br>
+			<select ng-model="topicOfInterest" ng-options="topic1.name for topic1 in topicsInterestSubscribed" ng-change="changeInterestTopic(topicOfInterest)">
+				<option value="" selected disabled>Select A Topic</option>
+			</select>
+			<br><br>
+			<div ng-if="quesI_flag == true">
+				<div class="card bg-light mb-3 mx-auto" style="max-width: 20rem;" ng-repeat="ques1 in quesIArr">
+  				<div class="card-header" ng-bind-html="ques1.title"></div>
+  				<div class="card-body">
+    				<p class="card-text" ng-bind-html="ques1.quesText"></p>
+						<a href="#question/{{ques1.id}}" class="card-link">View Question</a>
+					</div>
+				</div>
+			</div>
+			<div ng-if="quesI_flag == false">
+				<h4>Uh oh!</h4>
+				No questions available for topic {{topicOfInterest.name}}!
+			</div>
+			<hr>
+			<legend>Your Expertise Topics</legend>
+			<br>
+			<select ng-model="topicOfExpertise" ng-options="topic2.name for topic2 in topicsExpertiseSubscribed" ng-change="changeExpertiseTopic(topicOfExpertise)">
+				<option value="" selected disabled>Select A Topic</option>
+			</select>
+			<br><br>
+			<div ng-if="quesE_flag == true">
+				<div class="card bg-light mb-3 mx-auto" style="max-width: 20rem;" ng-repeat="ques2 in quesEArr">
+  				<div class="card-header" ng-bind-html="ques2.title"></div>
+  				<div class="card-body">
+    				<p class="card-text" ng-bind-html="ques2.quesText"></p>
+						<a href="#question/{{ques2.id}}" class="card-link">View Question</a>
+					</div>
+				</div>
+			</div>
+			<div ng-if="quesE_flag == false">
+				<h4>Uh oh!</h4>
+				No questions available for topic {{topicOfExpertise.name}}!
+			</div>
+		</div>
+
+		<div ng-if="topics_flag == false">
+			<p>
+				<h4>Uh oh!</h4><br>
+				We noticed you haven't selected any topics!<br>
+				Select some topics now and populate your feed!
+			</p>
+			<button type="button" class="btn btn-outline-primary" ng-click="changeView('topicSelection')">SELECT TOPICS</button>
+		</div>
+	</div>
+</div>

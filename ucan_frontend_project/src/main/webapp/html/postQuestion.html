@@ -1,0 +1,52 @@
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp" ng-controller="postQuestion">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  	<a class="navbar-brand" href="#home">UCAN</a>
+  	<div class="collapse navbar-collapse" id="navbarColor01">
+    	<ul class="navbar-nav alignright">
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+	      	<input class="form-control mr-sm-2 col-lg-6" placeholder="Search" type="text">
+	      	<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+	    	</form>
+
+				<li class="nav-item">
+        	<a class="nav-link" href="#postQuestion">Ask</a>
+      	</li>
+				<li class="nav-item">
+        	<a class="nav-link" href="#home">Chat</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="#home">Bookmarks</a>
+      	</li>
+    		<li class="nav-item">
+    			<a class="nav-link" href="#userProfile">My Profile</a>
+    		</li>
+    	</ul>
+  	</div>
+	</nav>
+	<br><br><br>
+
+  <div class="container">
+    <form>
+      <h4>Ask your query!</h4>
+      <div class="form-group">
+				<p class="lead">Question Title</p>
+				<textarea class="form-control" rows="2" ng-model="quesTitle"></textarea>
+				<small class="form-text text-muted">A one-liner to specify your question (Limited to 255 characters only).</small>
+				<br>
+      	<p class="lead">Question Description</p>
+        <textarea class="form-control" rows="10" ng-model="quesText"></textarea>
+        <small class="form-text text-muted">Describe your question in detail.</small>
+        <br>
+        <p class="lead">Tags</p>
+        <select multiple class="form-control" ng-model="quesTags">
+          <option ng-repeat="topic in topicsArr">{{topic.name}}</option>
+        </select>
+        <small class="form-text text-muted">Select the tags that apply to this question.</small>
+        <br>
+        <button type="button" class="btn btn-outline-primary" ng-click="postQues()" >POST QUESTION</button>
+      </div>
+    </form>
+		<p class="text-danger">{{msg}}</p>
+  </div>
+</div>

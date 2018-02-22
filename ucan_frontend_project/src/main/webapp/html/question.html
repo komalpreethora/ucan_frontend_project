@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="/css/luxtheme.css">
+<div ng-app="myApp" ng-controller="quesAnswer">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  	<a class="navbar-brand" href="#home">UCAN</a>
+  	<div class="collapse navbar-collapse" id="navbarColor01">
+    	<ul class="navbar-nav alignright">
+				<form class="form-inline my-2 my-lg-0 mr-auto">
+	      	<input class="form-control mr-sm-2 col-lg-6" placeholder="Search" type="text">
+	      	<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+	    	</form>
+
+				<li class="nav-item">
+        	<a class="nav-link" href="#postQuestion">Ask</a>
+      	</li>
+				<li class="nav-item">
+        	<a class="nav-link" href="#home">Chat</a>
+      	</li>
+      	<li class="nav-item">
+        	<a class="nav-link" href="#home">Bookmarks</a>
+      	</li>
+    		<li class="nav-item">
+    			<a class="nav-link" href="#userProfile">My Profile</a>
+    		</li>
+    	</ul>
+  	</div>
+	</nav>
+	<br><br><br>
+
+	<div class="container">
+		<h4>Question ID: {{quesId}}</h4><br>
+    <h5 ng-bind-html="quesInfo.title"></h5>
+    <p class="p-2 lead" ng-bind-html="quesInfo.questionText"></p>
+    <p class="text-muted">asked by {{quesInfo.username}} from {{quesInfo.country}}</p>
+		<div class="progress">
+  		<div class="progress-bar" role="progressbar" style="width: {{quesInfo.ratioOfVotes}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+		</div><br>
+		<button type="button" class="btn btn-outline-primary" ng-click="addQUp()" ng-disabled="qbutton">Upvote ({{quesInfo.upvotes}})</button>
+		<button type="button" class="btn btn-outline-primary" ng-click="addQDown()" ng-disabled="qbutton">Downvote ({{quesInfo.downvotes}})</button>
+
+		<br><br><br><br><br>
+
+		<h4>Answers</h4>
+		<div ng-if="length != 0">
+    	<div ng-repeat="answer in ansArray">
+      	<p class="p-2 lead" ng-bind-html="answer.description"></p>
+				<p class="text-muted">answered by {{answer.owneruser}} from {{answer.ownercountry}}</p>
+				<div class="progress">
+	  			<div class="progress-bar" role="progressbar" style="width: {{answer.ratioOfVotes}}%;" aria-valuemin="0" aria-valuemax="100"></div>
+				</div><br>
+				<button type="button" class="btn btn-outline-primary" ng-click="addAUp(answer)" ng-disabled="abutton">Upvote ({{answer.upvotes}})</button>
+				<button type="button" class="btn btn-outline-primary" ng-click="addADown(answer)" ng-disabled="abutton">Downvote ({{answer.downvotes}})</button>
+				<br><br><br><br>
+			</div>
+			<br>
+			<hr>
+		</div>
+		<div ng-if="length == 0">
+			<br>
+			<p class="lead">No one has solved this query yet. Be the first to answer!</p>
+		</div>
+		<legend ng-if="length != 0">Think you have a better answer?</legend>
+		<br>
+		<form>
+			<p class="lead">Your answer here</p>
+			<textarea class="form-control" rows="10" ng-model="ansText"></textarea>
+			<br>
+			<button type="button" class="btn btn-outline-primary" ng-click="postAnswer()">POST ANSWER</button>
+		</form>
+	</div>
+</div>
